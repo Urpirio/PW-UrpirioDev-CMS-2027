@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards_section_about_mes",
+  "info": {
+    "singularName": "cards-section-about-me",
+    "pluralName": "cards-section-about-mes",
+    "displayName": "cards section about me"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "contenido": {
+      "type": "string"
+    }
+  }
+}

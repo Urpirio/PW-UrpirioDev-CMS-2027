@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tecnologia_proyectos",
+  "info": {
+    "singularName": "tecnologia-proyecto",
+    "pluralName": "tecnologia-proyectos",
+    "displayName": "tecnologia_proyecto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "text"
+    },
+    "proyecto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proyecto.proyecto",
+      "inversedBy": "tecnologia_proyectos"
+    }
+  }
+}

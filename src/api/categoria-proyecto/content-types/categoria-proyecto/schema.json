@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "categoria_proyectos",
+  "info": {
+    "singularName": "categoria-proyecto",
+    "pluralName": "categoria-proyectos",
+    "displayName": "categoria_proyecto"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "nombre": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "proyecto": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::proyecto.proyecto",
+      "inversedBy": "categoria_proyectos"
+    }
+  }
+}

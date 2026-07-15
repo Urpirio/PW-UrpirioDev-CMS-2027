@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "redes_sociales",
+  "info": {
+    "singularName": "redes-sociale",
+    "pluralName": "redes-sociales",
+    "displayName": "redes_sociale"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "url": {
+      "type": "text"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}
