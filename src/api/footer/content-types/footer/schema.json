@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "footers",
+  "info": {
+    "singularName": "footer",
+    "pluralName": "footers",
+    "displayName": "Footer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "descripcion": {
+      "type": "string"
+    },
+    "redes_sociales": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::redes-sociale.redes-sociale"
+    },
+    "ubicacion": {
+      "type": "string"
+    }
+  }
+}
