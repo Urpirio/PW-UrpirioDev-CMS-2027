@@ -4,7 +4,7 @@
   "info": {
     "singularName": "blog",
     "pluralName": "blogs",
-    "displayName": "blog"
+    "displayName": "articulo"
   },
   "options": {
     "draftAndPublish": true
@@ -45,6 +45,23 @@
       "relation": "oneToMany",
       "target": "api::categoria-blog.categoria-blog",
       "mappedBy": "blog"
+    },
+    "cta": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::cta.cta",
+      "inversedBy": "articulos"
+    },
+    "autores_de_articulo": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::autores-de-articulo.autores-de-articulo"
+    },
+    "fuentes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::fuente.fuente",
+      "mappedBy": "articulo"
     }
   }
 }
