@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "cards_sobre_mis",
+  "info": {
+    "singularName": "cards-sobre-mi",
+    "pluralName": "cards-sobre-mis",
+    "displayName": "categoria articulos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    },
+    "icono": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::icono.icono",
+      "inversedBy": "cards_sobre_mis"
+    }
+  }
+}
