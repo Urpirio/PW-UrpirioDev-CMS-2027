@@ -1,0 +1,30 @@
+{
+  "kind": "collectionType",
+  "collectionName": "lista_de_trayectorias",
+  "info": {
+    "singularName": "lista-de-trayectoria",
+    "pluralName": "lista-de-trayectorias",
+    "displayName": "lista de trayectoria"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "iconos": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::icono.icono",
+      "mappedBy": "lista_de_trayectoria"
+    },
+    "card_experiencia": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::card-experiencia.card-experiencia",
+      "inversedBy": "lista_de_trayectorias"
+    }
+  }
+}
