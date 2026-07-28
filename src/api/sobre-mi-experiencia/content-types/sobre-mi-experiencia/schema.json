@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "sobre_mi_experiencias",
+  "info": {
+    "singularName": "sobre-mi-experiencia",
+    "pluralName": "sobre-mi-experiencias",
+    "displayName": "Sobre mi experiencia"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    },
+    "card_experiencias": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::card-experiencia.card-experiencia"
+    }
+  }
+}
