@@ -17,18 +17,32 @@
     "subtitulo": {
       "type": "string"
     },
-    "contenido": {
-      "type": "string"
-    },
     "tecnologia_proyectos": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::tecnologia-proyecto.tecnologia-proyecto"
     },
-    "cards_section_about_mes": {
+    "cards_sobre_mis": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::cards-section-about-me.cards-section-about-me"
+      "target": "api::cards-sobre-mi.cards-sobre-mi"
+    },
+    "contenido": {
+      "type": "blocks"
+    },
+    "Tecnologias": {
+      "type": "string"
+    },
+    "roles_profesionales": {
+      "type": "string"
+    },
+    "Experiencia": {
+      "type": "string"
+    },
+    "empresas": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::empresa.empresa"
     }
   }
 }
