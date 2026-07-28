@@ -1,0 +1,49 @@
+{
+  "kind": "singleType",
+  "collectionName": "sobre_mis",
+  "info": {
+    "singularName": "sobre-mi",
+    "pluralName": "sobre-mis",
+    "displayName": "Sobre mi"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "especialidad": {
+      "type": "string"
+    },
+    "direccion": {
+      "type": "string"
+    },
+    "numero": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "githud": {
+      "type": "string"
+    },
+    "linkedin": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "perfil": {
+      "type": "blocks"
+    },
+    "foto_perfil": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
