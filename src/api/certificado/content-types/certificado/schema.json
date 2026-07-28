@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "certificados",
+  "info": {
+    "singularName": "certificado",
+    "pluralName": "certificados",
+    "displayName": "Certificado"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "Instituto": {
+      "type": "string"
+    },
+    "fecha": {
+      "type": "date"
+    },
+    "logo": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    }
+  }
+}
