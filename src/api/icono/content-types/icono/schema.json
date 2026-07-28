@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "iconos",
+  "info": {
+    "singularName": "icono",
+    "pluralName": "iconos",
+    "displayName": "icono"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "icono": {
+      "type": "string"
+    },
+    "descripcion": {
+      "type": "string"
+    },
+    "cards_sobre_mis": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::cards-sobre-mi.cards-sobre-mi",
+      "mappedBy": "icono"
+    },
+    "lista_de_trayectoria": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::lista-de-trayectoria.lista-de-trayectoria",
+      "inversedBy": "iconos"
+    }
+  }
+}
