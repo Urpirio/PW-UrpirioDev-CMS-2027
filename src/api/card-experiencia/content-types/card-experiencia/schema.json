@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "card_experiencias",
+  "info": {
+    "singularName": "card-experiencia",
+    "pluralName": "card-experiencias",
+    "displayName": "Card_Experiencia"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "empresa": {
+      "type": "string"
+    },
+    "fecha_inicio": {
+      "type": "date"
+    },
+    "fecha_final": {
+      "type": "date"
+    },
+    "lista_de_trayectorias": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::lista-de-trayectoria.lista-de-trayectoria",
+      "mappedBy": "card_experiencia"
+    }
+  }
+}
