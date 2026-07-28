@@ -1,0 +1,21 @@
+{
+  "kind": "singleType",
+  "collectionName": "habilidades_tecnicas",
+  "info": {
+    "singularName": "habilidades-tecnica",
+    "pluralName": "habilidades-tecnicas",
+    "displayName": "Habilidades técnica"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "titulo": {
+      "type": "string"
+    },
+    "subtitulo": {
+      "type": "string"
+    }
+  }
+}
