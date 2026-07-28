@@ -441,10 +441,45 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiAutoresDeArticuloAutoresDeArticulo
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'autores_de_articulos';
+  info: {
+    displayName: 'Autores de articulo';
+    pluralName: 'autores-de-articulos';
+    singularName: 'autores-de-articulo';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    apellido: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    foto_autor: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    instagram: Schema.Attribute.String;
+    linkedin: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::autores-de-articulo.autores-de-articulo'
+    > &
+      Schema.Attribute.Private;
+    nombe: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   collectionName: 'blogs';
   info: {
-    displayName: 'blog';
+    displayName: 'articulo';
     pluralName: 'blogs';
     singularName: 'blog';
   };
@@ -453,6 +488,10 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
   };
   attributes: {
     articulo: Schema.Attribute.Blocks;
+    autores_de_articulo: Schema.Attribute.Relation<
+      'oneToOne',
+      'api::autores-de-articulo.autores-de-articulo'
+    >;
     categoria_blogs: Schema.Attribute.Relation<
       'oneToMany',
       'api::categoria-blog.categoria-blog'
@@ -460,10 +499,12 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    cta: Schema.Attribute.Relation<'manyToOne', 'api::cta.cta'>;
     documentos: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
+    fuentes: Schema.Attribute.Relation<'oneToMany', 'api::fuente.fuente'>;
     imagenes: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
@@ -473,6 +514,42 @@ export interface ApiBlogBlog extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
     subtitulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCardExperienciaCardExperiencia
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'card_experiencias';
+  info: {
+    displayName: 'Card_Experiencia';
+    pluralName: 'card-experiencias';
+    singularName: 'card-experiencia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    empresa: Schema.Attribute.String;
+    fecha_final: Schema.Attribute.Date;
+    fecha_inicio: Schema.Attribute.Date;
+    lista_de_trayectorias: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::lista-de-trayectoria.lista-de-trayectoria'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::card-experiencia.card-experiencia'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
     titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -503,6 +580,37 @@ export interface ApiCardsSectionAboutMeCardsSectionAboutMe
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCardsSobreMiCardsSobreMi
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'cards_sobre_mis';
+  info: {
+    displayName: 'categoria articulos';
+    pluralName: 'cards-sobre-mis';
+    singularName: 'cards-sobre-mi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    icono: Schema.Attribute.Relation<'manyToOne', 'api::icono.icono'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cards-sobre-mi.cards-sobre-mi'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
     titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -572,6 +680,367 @@ export interface ApiCategoriaProyectoCategoriaProyecto
   };
 }
 
+export interface ApiCertificadoCertificado extends Struct.CollectionTypeSchema {
+  collectionName: 'certificados';
+  info: {
+    displayName: 'Certificado';
+    pluralName: 'certificados';
+    singularName: 'certificado';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fecha: Schema.Attribute.Date;
+    Instituto: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificado.certificado'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiCtaParaAgenciaCtaParaAgencia
+  extends Struct.SingleTypeSchema {
+  collectionName: 'cta_para_agencias';
+  info: {
+    displayName: 'CTA para agencia';
+    pluralName: 'cta-para-agencias';
+    singularName: 'cta-para-agencia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    label_url: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cta-para-agencia.cta-para-agencia'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url_agencia: Schema.Attribute.String;
+  };
+}
+
+export interface ApiCtaCta extends Struct.CollectionTypeSchema {
+  collectionName: 'ctas';
+  info: {
+    displayName: 'CTA';
+    pluralName: 'ctas';
+    singularName: 'cta';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articulos: Schema.Attribute.Relation<'oneToMany', 'api::blog.blog'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    label_url: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::cta.cta'> &
+      Schema.Attribute.Private;
+    proyectos: Schema.Attribute.Relation<'oneToMany', 'api::proyecto.proyecto'>;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiEmpresaEmpresa extends Struct.CollectionTypeSchema {
+  collectionName: 'empresas';
+  info: {
+    displayName: 'Empresa';
+    pluralName: 'empresas';
+    singularName: 'empresa';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.Text;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::empresa.empresa'
+    > &
+      Schema.Attribute.Private;
+    logo: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFooterFooter extends Struct.SingleTypeSchema {
+  collectionName: 'footers';
+  info: {
+    displayName: 'Footer';
+    pluralName: 'footers';
+    singularName: 'footer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::footer.footer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    redes_sociales: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::redes-sociale.redes-sociale'
+    >;
+    ubicacion: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFormacionYCertificadoFormacionYCertificado
+  extends Struct.SingleTypeSchema {
+  collectionName: 'formacion_y_certificados';
+  info: {
+    displayName: 'Formaci\u00F3n y certificado';
+    pluralName: 'formacion-y-certificados';
+    singularName: 'formacion-y-certificado';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    certificados: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::certificado.certificado'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    formacions: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::formacion.formacion'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::formacion-y-certificado.formacion-y-certificado'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFormacionFormacion extends Struct.CollectionTypeSchema {
+  collectionName: 'formacions';
+  info: {
+    displayName: 'Formaci\u00F3n';
+    pluralName: 'formacions';
+    singularName: 'formacion';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    fecha_final: Schema.Attribute.Date;
+    fecha_inicio: Schema.Attribute.Date;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::formacion.formacion'
+    > &
+      Schema.Attribute.Private;
+    Logo: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    univerdidad: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiFuenteFuente extends Struct.CollectionTypeSchema {
+  collectionName: 'fuentes';
+  info: {
+    displayName: 'Fuente';
+    pluralName: 'fuentes';
+    singularName: 'fuente';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    articulo: Schema.Attribute.Relation<'manyToOne', 'api::blog.blog'>;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::fuente.fuente'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.String;
+  };
+}
+
+export interface ApiHabilidadesTecnicaHabilidadesTecnica
+  extends Struct.SingleTypeSchema {
+  collectionName: 'habilidades_tecnicas';
+  info: {
+    displayName: 'Habilidades t\u00E9cnica';
+    pluralName: 'habilidades-tecnicas';
+    singularName: 'habilidades-tecnica';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::habilidades-tecnica.habilidades-tecnica'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiIconoIcono extends Struct.CollectionTypeSchema {
+  collectionName: 'iconos';
+  info: {
+    displayName: 'icono';
+    pluralName: 'iconos';
+    singularName: 'icono';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    cards_sobre_mis: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::cards-sobre-mi.cards-sobre-mi'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    descripcion: Schema.Attribute.String;
+    icono: Schema.Attribute.String;
+    lista_de_trayectoria: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::lista-de-trayectoria.lista-de-trayectoria'
+    >;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<'oneToMany', 'api::icono.icono'> &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiListaDeTrayectoriaListaDeTrayectoria
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'lista_de_trayectorias';
+  info: {
+    displayName: 'lista de trayectoria';
+    pluralName: 'lista-de-trayectorias';
+    singularName: 'lista-de-trayectoria';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    card_experiencia: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::card-experiencia.card-experiencia'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    iconos: Schema.Attribute.Relation<'oneToMany', 'api::icono.icono'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::lista-de-trayectoria.lista-de-trayectoria'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
   collectionName: 'proyectos';
   info: {
@@ -587,11 +1056,17 @@ export interface ApiProyectoProyecto extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::categoria-proyecto.categoria-proyecto'
     >;
+    contenido: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    cta: Schema.Attribute.Relation<'manyToOne', 'api::cta.cta'>;
     descripcion: Schema.Attribute.String;
     documentos: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    images: Schema.Attribute.Media<
       'images' | 'files' | 'videos' | 'audios',
       true
     >;
@@ -658,14 +1133,16 @@ export interface ApiSectionAboutMeSectionAboutMe
     draftAndPublish: true;
   };
   attributes: {
-    cards_section_about_mes: Schema.Attribute.Relation<
+    cards_sobre_mis: Schema.Attribute.Relation<
       'oneToMany',
-      'api::cards-section-about-me.cards-section-about-me'
+      'api::cards-sobre-mi.cards-sobre-mi'
     >;
-    contenido: Schema.Attribute.String;
+    contenido: Schema.Attribute.Blocks;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    empresas: Schema.Attribute.Relation<'oneToMany', 'api::empresa.empresa'>;
+    Experiencia: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -673,11 +1150,13 @@ export interface ApiSectionAboutMeSectionAboutMe
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
+    roles_profesionales: Schema.Attribute.String;
     subtitulo: Schema.Attribute.String;
     tecnologia_proyectos: Schema.Attribute.Relation<
       'oneToMany',
       'api::tecnologia-proyecto.tecnologia-proyecto'
     >;
+    Tecnologias: Schema.Attribute.String;
     titulo: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -730,6 +1209,10 @@ export interface ApiSectionHeroSectionHero extends Struct.SingleTypeSchema {
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     descripcion: Schema.Attribute.String;
+    images: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -741,6 +1224,7 @@ export interface ApiSectionHeroSectionHero extends Struct.SingleTypeSchema {
       'oneToMany',
       'api::redes-sociale.redes-sociale'
     >;
+    Show_section: Schema.Attribute.Boolean;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -775,6 +1259,78 @@ export interface ApiSectionProyectoSectionProyecto
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSobreMiExperienciaSobreMiExperiencia
+  extends Struct.SingleTypeSchema {
+  collectionName: 'sobre_mi_experiencias';
+  info: {
+    displayName: 'Sobre mi experiencia';
+    pluralName: 'sobre-mi-experiencias';
+    singularName: 'sobre-mi-experiencia';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    card_experiencias: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::card-experiencia.card-experiencia'
+    >;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sobre-mi-experiencia.sobre-mi-experiencia'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    subtitulo: Schema.Attribute.String;
+    titulo: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiSobreMiSobreMi extends Struct.SingleTypeSchema {
+  collectionName: 'sobre_mis';
+  info: {
+    displayName: 'Sobre mi';
+    pluralName: 'sobre-mis';
+    singularName: 'sobre-mi';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    direccion: Schema.Attribute.String;
+    email: Schema.Attribute.String;
+    especialidad: Schema.Attribute.String;
+    foto_perfil: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios'
+    >;
+    githud: Schema.Attribute.String;
+    linkedin: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::sobre-mi.sobre-mi'
+    > &
+      Schema.Attribute.Private;
+    numero: Schema.Attribute.String;
+    perfil: Schema.Attribute.Blocks;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -1320,16 +1876,32 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::autores-de-articulo.autores-de-articulo': ApiAutoresDeArticuloAutoresDeArticulo;
       'api::blog.blog': ApiBlogBlog;
+      'api::card-experiencia.card-experiencia': ApiCardExperienciaCardExperiencia;
       'api::cards-section-about-me.cards-section-about-me': ApiCardsSectionAboutMeCardsSectionAboutMe;
+      'api::cards-sobre-mi.cards-sobre-mi': ApiCardsSobreMiCardsSobreMi;
       'api::categoria-blog.categoria-blog': ApiCategoriaBlogCategoriaBlog;
       'api::categoria-proyecto.categoria-proyecto': ApiCategoriaProyectoCategoriaProyecto;
+      'api::certificado.certificado': ApiCertificadoCertificado;
+      'api::cta-para-agencia.cta-para-agencia': ApiCtaParaAgenciaCtaParaAgencia;
+      'api::cta.cta': ApiCtaCta;
+      'api::empresa.empresa': ApiEmpresaEmpresa;
+      'api::footer.footer': ApiFooterFooter;
+      'api::formacion-y-certificado.formacion-y-certificado': ApiFormacionYCertificadoFormacionYCertificado;
+      'api::formacion.formacion': ApiFormacionFormacion;
+      'api::fuente.fuente': ApiFuenteFuente;
+      'api::habilidades-tecnica.habilidades-tecnica': ApiHabilidadesTecnicaHabilidadesTecnica;
+      'api::icono.icono': ApiIconoIcono;
+      'api::lista-de-trayectoria.lista-de-trayectoria': ApiListaDeTrayectoriaListaDeTrayectoria;
       'api::proyecto.proyecto': ApiProyectoProyecto;
       'api::redes-sociale.redes-sociale': ApiRedesSocialeRedesSociale;
       'api::section-about-me.section-about-me': ApiSectionAboutMeSectionAboutMe;
       'api::section-blog.section-blog': ApiSectionBlogSectionBlog;
       'api::section-hero.section-hero': ApiSectionHeroSectionHero;
       'api::section-proyecto.section-proyecto': ApiSectionProyectoSectionProyecto;
+      'api::sobre-mi-experiencia.sobre-mi-experiencia': ApiSobreMiExperienciaSobreMiExperiencia;
+      'api::sobre-mi.sobre-mi': ApiSobreMiSobreMi;
       'api::tecnologia-proyecto.tecnologia-proyecto': ApiTecnologiaProyectoTecnologiaProyecto;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
